@@ -1,0 +1,66 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/opt/homebrew/bin/python3 /Volumes/MacExt/dev/projects/.claude/hooks/check_events.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/opt/homebrew/bin/python3 /Volumes/MacExt/dev/projects/.claude/hooks/prompt_enhancer.py"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/opt/homebrew/bin/python3 /Volumes/MacExt/dev/projects/.claude/hooks/bash_validator.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write(*.py)|Edit(*.py)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/opt/homebrew/bin/python3 /Volumes/MacExt/dev/projects/.claude/hooks/python_formatter.py"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/opt/homebrew/bin/python3 /Volumes/MacExt/dev/projects/.claude/hooks/session_complete.py"
+          }
+        ]
+      }
+    ]
+  },
+  "allowedTools": [
+    "Read",
+    "Write",
+    "Edit",
+    "Bash",
+    "WebFetch",
+    "WebSearch",
+    "TodoWrite"
+  ],
+  "model": "opus"
+}
