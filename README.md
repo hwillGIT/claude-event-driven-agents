@@ -9,6 +9,8 @@ An advanced event-driven agent architecture for Claude Code, featuring Redis-bas
 - **Hooks System**: Lifecycle hooks for session management, command validation, and auto-formatting
 - **Redis Integration**: Message queue system using Redis in Docker
 - **Deployment Automation**: Complete CI/CD event processing with audit trails
+- **Advanced Concurrency**: Async/await patterns inspired by modern Python architectures
+- **Scalable Processing**: Handle hundreds of concurrent events efficiently
 
 ## 📁 Project Structure
 
@@ -24,6 +26,9 @@ An advanced event-driven agent architecture for Claude Code, featuring Redis-bas
 │   ├── settings.json           # Claude Code settings and hook configuration
 │   ├── event_trigger.py        # External event trigger script
 │   └── message_queue_listener.py # Message queue listener
+├── docs/                       # Documentation
+│   ├── CONCURRENCY.md          # Concurrency architecture details
+│   └── PERFORMANCE_GUIDE.md    # Performance optimization guide
 ├── infrastructure/             # Infrastructure components
 │   └── redis/                  # Redis setup
 │       ├── docker-compose.yml  # Redis container configuration
@@ -166,6 +171,31 @@ claude --resume
 @agent-event-processor
 ```
 
+## ⚡ Performance & Concurrency
+
+### Concurrency Architecture
+The system incorporates advanced Python concurrency patterns for optimal performance:
+
+- **Async/Await Throughout**: Non-blocking I/O operations for maximum throughput
+- **Event Loop Management**: Efficient task scheduling and execution
+- **Parallel Processing**: Multiple events handled simultaneously without threading overhead
+- **Queue-Based Distribution**: Redis ensures reliable, distributed event processing
+- **Resource Efficiency**: Single process handles many concurrent operations
+
+### Performance Optimizations
+- **Non-Blocking Redis Operations**: Uses async Redis client for high-throughput messaging
+- **Subprocess Management**: Shell commands execute asynchronously without blocking
+- **Concurrent Tool Execution**: Multiple tools can run in parallel during event processing
+- **Connection Pooling**: Maintains Redis connection pools for efficiency
+- **Batched Event Processing**: Can process up to 5 events per session start
+
+### Scalability Features
+- **Horizontal Scaling**: Add more workers to handle increased load
+- **Distributed Processing**: Events can be processed across multiple machines
+- **Load Balancing**: Redis naturally distributes work across available workers
+- **Fault Tolerance**: Failed events can be retried automatically
+- **Zero Downtime**: Deploy updates without stopping event processing
+
 ## 🛡️ Security
 
 - Command validation hooks prevent dangerous operations
@@ -182,11 +212,17 @@ MIT
 - Created with Claude Code
 - Event-driven architecture powered by Redis
 
+## 📚 Documentation
+
+- [Concurrency Architecture](docs/CONCURRENCY.md) - Deep dive into async patterns and event processing
+- [Performance Guide](docs/PERFORMANCE_GUIDE.md) - Optimization tips and benchmarks
+
 ## 🆘 Support
 
 For issues or questions, please check:
 - Claude Code documentation: https://docs.claude.com/
 - Redis documentation: https://redis.io/docs/
+- Project Issues: https://github.com/hwillGIT/claude-event-driven-agents/issues
 
 ---
 
